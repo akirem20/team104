@@ -3,7 +3,7 @@ import { AuthService } from './services/auth.service';
 import { Auth } from '@angular/fire/auth';
 import { User as FirebaseUser, onAuthStateChanged } from 'firebase/auth';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Router } from '@angular/router';  // Import Router
+import { RouterModule, Router, NavigationEnd } from '@angular/router'; // <- Import NavigationEnd
 
 @Component({
   selector: 'app-root',
@@ -15,9 +15,21 @@ import { RouterModule, Router } from '@angular/router';  // Import Router
 export class AppComponent implements OnInit {
   username: string = '';
   isLoading: boolean = true;
-   // Ensure router is declared as private and used only once
+  showNavbar: boolean = true; // <-- NEW variable to control the Navbar visibility
 
-  constructor(private auth: Auth, private authService: AuthService, private router: Router) {}
+  constructor(
+    private auth: Auth,
+    private authService: AuthService,
+    private router: Router
+  ) {
+    // Listen to route changes to show/hide Navbar
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        const currentUrl = event.urlAfterRedirects;
+        this.showNavbar = !(currentUrl.includes('/login') || currentUrl.includes('/register'));
+      }
+    });
+  }
 
   ngOnInit(): void {
     console.log('AppComponent ngOnInit');

@@ -1,0 +1,53 @@
+<!-- Flats List -->
+<div class="flats-list">
+  <!-- Search Bar -->
+  <div class="search-container">
+    <input type="text" [(ngModel)]="searchTerm" (input)="filterFlats()" placeholder="Search flats..." class="search-bar" />
+  </div>
+
+  <div *ngFor="let flat of (filteredFlats.length ? filteredFlats : flats)" class="flat-card">
+    <img [src]="flat.imageUrl" alt="Flat Image" class="flat-image" />
+    <h2>{{ flat.name }}</h2>
+    <p>Location: {{ flat.location }}</p>
+    <p>Price: ${{ flat.price }}</p>
+
+    <!-- Favorite -->
+    <button class="favorite-btn" (click)="addToFavorites(flat)">❤️ Favorite</button>
+
+    <!-- View Details -->
+    <button class="view-details-btn" (click)="viewDetails(flat)">🔍 View Details</button>
+
+    <!-- Comment Input -->
+    <div class="comment-section">
+      <textarea
+        [(ngModel)]="flat.newComment"
+        placeholder="Write a comment..."
+        rows="2"
+        class="comment-box"
+      ></textarea>
+      <button class="comment-btn" (click)="addComment(flat)">💬 Comment</button>
+    </div>
+
+    <!-- Comments List -->
+    <div *ngIf="flat.comments?.length">
+      <h4>Comments:</h4>
+      <ul>
+        <li *ngFor="let comment of flat.comments; let i = index">
+          {{ comment }}
+          <button class="delete-comment-btn" (click)="removeComment(flat, i)">❌ Delete</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Modal for View Details -->
+  <div class="modal" *ngIf="selectedFlat" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <h2>{{ selectedFlat.name }}</h2>
+      <p>Location: {{ selectedFlat.location }}</p>
+      <p>Price: ${{ selectedFlat.price }}</p>
+      <img [src]="selectedFlat.imageUrl" alt="Flat Image" class="modal-image" />
+      <button class="close-modal-btn" (click)="closeModal()">Close</button>
+    </div>
+  </div>
+</div>

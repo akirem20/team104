@@ -22,7 +22,7 @@ successMessage: any;
     this.authService.login(this.email, this.password)
       .then(() => {
         alert('Login successful!');
-        this.router.navigate(['/app']); // or any route you want
+        this.router.navigate(['/dashboard']); // or any route you want
       })
       .catch(err => {
         alert(err.message);

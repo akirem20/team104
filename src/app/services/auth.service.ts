@@ -3,6 +3,7 @@ import {
   Auth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
   signOut,
   User as FirebaseUser,
 } from '@angular/fire/auth';
@@ -25,13 +26,20 @@ export class AuthService {
     return runInInjectionContext(this.injector, async () => {
       try {
         const userCredential = await createUserWithEmailAndPassword(this.auth, email, password);
-        console.log('✅ Firebase Auth created:', userCredential.user.uid);
+        const user = userCredential.user;
   
-        // Firestore write
-        const userRef = doc(this.firestore, 'users', userCredential.user.uid);
+        console.log('✅ Firebase Auth created:', user.uid);
+  
+        // ✅ Set displayName in Firebase Auth
+        await updateProfile(user, {
+          displayName: username
+        });
+  
+        // ✅ Firestore write
+        const userRef = doc(this.firestore, 'users', user.uid);
         await setDoc(userRef, {
-          uid: userCredential.user.uid,
-          email: userCredential.user.email,
+          uid: user.uid,
+          email: user.email,
           username: username,
           createdAt: new Date(),
         });
@@ -44,6 +52,7 @@ export class AuthService {
       }
     });
   }
+  
   
 
   login(email: string, password: string) {

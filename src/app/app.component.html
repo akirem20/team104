@@ -1,11 +1,33 @@
-<!-- app.component.html -->
-<div *ngIf="isLoading">
-  Loading...
+<!-- Show Navbar only if showNavbar is true -->
+<nav *ngIf="showNavbar">
+  <div class="navbar-left">
+    <!-- Logo -->
+    <div>
+      <img src="assets/residential.png" alt="FlatRender Logo" height="40" />
+      <span><strong>FlatRender</strong></span>
+    </div>
+
+   <!-- Navigation Links -->
+<div class="navbar-links">
+  <a routerLink="/dashboard">Dashboard</a> |
+  <a routerLink="/flat-list">Flats</a> |
+  <a routerLink="/favorites">Favorites</a> |
+  <a routerLink="/Profile" class="account-link">
+    <img src="assets/image1.svg" alt="Account" height="24" />
+    Account
+  </a>
 </div>
 
-<div *ngIf="!isLoading && username">  
-  <h2>Welcome {{ username }}!</h2>
-  <button (click)="onLogout()">Logout</button>
-</div>
+  </div>
 
+  <!-- Logout Button -->
+  <div class="navbar-right">
+    <button (click)="onLogout()">
+      <img src="assets/logout.png" alt="Logout" height="24" />
+      <span>Logout</span>
+    </button>
+  </div>
+</nav>
+
+<!-- Always have router-outlet -->
 <router-outlet></router-outlet>
