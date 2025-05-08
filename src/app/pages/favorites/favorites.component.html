@@ -1,15 +1,23 @@
-<div *ngIf="favoriteFlats.length === 0" class="no-favorites">
-    <p>No favorites yet!</p>
+<div class="favorites-container">
+  <h2>Your Favorite Flats</h2>
+
+  <div *ngIf="favoriteFlats.length === 0" class="empty-message">
+    <p>You have no favorites yet.</p>
   </div>
-  
-  <div *ngFor="let flat of favoriteFlats" class="flat-card">
-    <img [src]="flat.imageUrl" alt="Flat Image" width="300" height="200" />
-    <h3>{{ flat.name }}</h3>
-    <p>Location: {{ flat.location }}</p>
-    <p>Price: ${{ flat.price }}</p>
-    <button (click)="removeFromFavorites(flat)">Remove</button>
+
+  <div class="flats-grid">
+    <div *ngFor="let flat of favoriteFlats" class="flat-card">
+      <img [src]="flat.image" alt="{{ flat.name }}" class="flat-image" />
+
+      <div class="flat-details">
+        <h3>{{ flat.name }}</h3>
+        <p>📍 {{ flat.location }}</p>
+        <p>💵 ${{ flat.price }}</p>
+      </div>
+
+      <button (click)="removeFromFavorites(flat)" class="remove-btn">
+        ❌ Remove
+      </button>
+    </div>
   </div>
-  
-  
-  
-  
+</div>

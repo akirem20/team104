@@ -1,70 +1,53 @@
-.favorite-container {
-    padding: 20px;
-    background-color: #f9f9f9;
-  }
-  
-  .favorite-item {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: transform 0.3s ease;
-  }
-  
-  .favorite-item:hover {
-    transform: translateY(-5px);
-  }
-  
-  .favorite-item h3 {
-    font-size: 1.5rem;
-    color: #333;
-    margin: 0;
-  }
-  
-  .favorite-item p {
-    color: #666;
-    font-size: 1rem;
-    margin: 5px 0;
-  }
-  
-  .favorite-item img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin-top: 10px;
-    object-fit: cover;
-  }
-  
-  .favorite-item button {
-    background-color: #ff4d4d;
-    color: #fff;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .favorite-item button:hover {
-    background-color: #e60000;
-  }
-  
-  .no-favorites {
-    text-align: center;
-    font-size: 1.25rem;
-    color: #777;
-    padding: 50px;
-  }
-  
-  .favorite-item .price {
-    font-weight: bold;
-    color: #333;
-  }
-  
-  
+.favorites-container {
+  padding: 1rem;
+}
+
+.empty-message {
+  text-align: center;
+  color: gray;
+}
+
+.flats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.flat-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  transition: transform 0.2s;
+}
+
+.flat-card:hover {
+  transform: scale(1.02);
+}
+
+.flat-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.flat-details {
+  margin-top: 0.5rem;
+}
+
+.remove-btn {
+  margin-top: 0.5rem;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.remove-btn:hover {
+  background-color: #c0392b;
+}
