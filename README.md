@@ -45,8 +45,7 @@ The app uses Firestore to store and retrieve flat listings and user favorites. T
 - **Angular 16+**
 - **Firebase Authentication**
 - **Cloud Firestore**
-- **Tailwind CSS (if used)**
-- **TypeScript**
+- **JavaScript**
 
 ---
 
